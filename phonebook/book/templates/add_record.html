@@ -3,8 +3,8 @@
 {% block content %}
 <main role="main" class="flex-shrink-0">
     <div class="container">
-        <h1 class="mt-5">Новый контакт</h1>
-        <form method="POST" action="/add/">
+        <h1 class="mt-5">{% block header-text %}Новый контакт{% endblock %}</h1>
+        <form method="POST">
             <div class="form-group">
                 {{ form.name.label_tag }}
                 {{ form.name }}
@@ -18,7 +18,7 @@
                 {{ form.address }}
             </div>
             {% csrf_token %}
-            <button type="submit" class="btn btn-primary">Добавить контакт</button>
+            <button type="submit" class="btn btn-primary">{% block submit-btn-text %}Добавить контакт{% endblock %}</button>
         </form>
     </div>
 </main>

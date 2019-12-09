@@ -1,5 +1,6 @@
 from django import forms
 from book.models import PhoneRecord
+from django.core.exceptions import ObjectDoesNotExist
 
 
 class PhoneRecordForm(forms.Form):
@@ -26,7 +27,7 @@ class PhoneRecordForm(forms.Form):
         if rec_id:
             try:
                 record = PhoneRecord.objects.get(id=rec_id)
-            except PhoneRecord.DoesNotExist:
+            except ObjectDoesNotExist:
                 pass
         else:
             record = PhoneRecord()
@@ -34,3 +35,12 @@ class PhoneRecordForm(forms.Form):
         record.phone = self.cleaned_data["phone"]
         record.address = self.cleaned_data["address"]
         record.save()
+
+    def init_vals(self, rec_id):
+        try:
+            record = PhoneRecord.objects.get(id=rec_id)
+        except ObjectDoesNotExist:
+            return
+        self.initial["name"] = record.name
+        self.initial["phone"] = record.phone
+        self.initial["address"] = record.address
