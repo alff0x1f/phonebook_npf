@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main role="main" class="flex-shrink-0">
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ФИО</th>
+                    <th scope="col">Номер</th>
+                    <th scope="col">Адрес</th>
+                    <th scope="col">Правка</th>
+                    <th scope="col">Удаление</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ record.name }}</td>
+                    <td>{{ record.phone }}</td>
+                    <td>{{ record.address }}</td>
+                    <td><a href="/edit/{{ record.id }}/"">Изменить</a></td>
+                    <td><a href="/delete/{{ record.id }}/"">Удалить</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>
+
+{% endblock %}
