@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main role="main" class="flex-shrink-0">
+    <div class="container">
+        <h1 class="mt-5">Удаление</h1>
+        <p>Подтвердите удаление следующей записи:
+            <ul>
+                <li> {{ record.name }} </li>
+                <li> {{ record.phone }} </li>
+                <li> {{ record.address }} </li>
+            </ul>
+            <form method="POST" action="/delete/{{ record.id }}/">
+                <input type="hidden" name="record_id" value="{{ record.id }}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Удалить</button>
+            </form>
+    </div>
+</main>
+{% endblock %}
