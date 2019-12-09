@@ -1,11 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from book.models import PhoneRecord
+from book.forms import PhoneRecordForm
 
 
 def index(request):
     records = PhoneRecord.objects.all().order_by('name')
     return render(request, 'index.html', {'records': records})
+
+
+def add_record(request):
+    form = PhoneRecordForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return HttpResponseRedirect("/")
+
+    return render(request, 'add_record.html', {'form': form})
 
 
 def delete(request, record_id):
