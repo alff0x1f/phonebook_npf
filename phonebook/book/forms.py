@@ -25,10 +25,7 @@ class PhoneRecordForm(forms.Form):
 
     def save(self, rec_id=0):
         if rec_id:
-            try:
-                record = PhoneRecord.objects.get(id=rec_id)
-            except ObjectDoesNotExist:
-                pass
+            record = PhoneRecord.objects.get(id=rec_id)
         else:
             record = PhoneRecord()
         record.name = self.cleaned_data["name"]
@@ -37,10 +34,7 @@ class PhoneRecordForm(forms.Form):
         record.save()
 
     def init_vals(self, rec_id):
-        try:
-            record = PhoneRecord.objects.get(id=rec_id)
-        except ObjectDoesNotExist:
-            return
+        record = PhoneRecord.objects.get(id=rec_id)
         self.initial["name"] = record.name
         self.initial["phone"] = record.phone
         self.initial["address"] = record.address

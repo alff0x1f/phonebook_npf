@@ -22,10 +22,17 @@ def add(request):
 def edit(request, record_id):
     form = PhoneRecordForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
-        form.save(record_id)
+        try:
+            form.save(record_id)
+        except ObjectDoesNotExist:
+            raise Http404("File not found.")
         return HttpResponseRedirect("/")
 
-    form.init_vals(record_id)
+    try:
+        form.init_vals(record_id)
+    except ObjectDoesNotExist:
+        raise Http404("File not found.")
+
     return render(request, 'edit_record.html', {'form': form})
 
 
