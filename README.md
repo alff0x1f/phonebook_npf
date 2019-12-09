@@ -12,6 +12,8 @@
 
 #### Инструкция о том как развернуть локальную копию:
 
+(В системе должен быть установлен python3 и virtualenv, проверена работа на ubuntu, но на других linux-дистрибутивах тоже должно запуститься без проблем)
+
 ```
 git clone https://github.com/alff0x1f/phonebook_npf.git
 cd phonebook_npf
