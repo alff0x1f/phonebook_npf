@@ -55,7 +55,7 @@ ROOT_URLCONF = 'phonebook.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['/home/ildus/dev/phonebook_npf/phonebook/templates'],
+        'DIRS': [''],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
